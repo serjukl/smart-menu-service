@@ -1,0 +1,67 @@
+.authContainer
+  display: flex
+  overflow: hidden
+  flex-direction: row
+
+.authRowReverse
+  flex-direction: row-reverse
+
+.authLeftPartContainer
+  width: 50%
+  min-height: 100vh
+  background-image: url("../images/backgroundAuthTexture.png")
+  background-position: center
+  background-repeat: no-repeat
+  background-size: cover
+  display: flex
+  align-items: center
+  justify-content: center
+
+.authRightPartContainer
+  width: 50%
+  min-height: 100vh
+  display: flex
+  align-items: center
+  justify-content: center
+
+.formAuth
+  display: flex
+  flex-direction: column
+  justify-content: center
+  width: 100%
+  align-items: center
+  min-height: 500px
+  legend
+    font-size: 35px
+    color: #48AF9C
+    font-weight: 500
+    text-transform: uppercase
+  p
+    font-size: 12px
+    color: darkgrey
+    margin: 10px 0
+
+.forgotPassLink
+  color: #48AF9C
+  margin-top: 20px
+  text-decoration: underline
+
+
+@media screen and (max-width: 1000px)
+  .authContainer
+    display: flex
+    flex-direction: column
+    align-items: center
+    justify-content: center
+
+  .authLeftPartContainer, .authRightPartContainer
+    width: 100%
+    min-height: 50vh
+
+@media screen and (max-width: 550px)
+  .formAuth
+    min-height: 350px
+    legend
+      font-size: 25px
+    p
+      margin: 5px 0

@@ -1,0 +1,41 @@
+.logoContainer
+  position: absolute
+  top: 20px
+  left: 20px
+  display: flex
+  align-items: center
+  flex-direction: row
+  justify-content: flex-start
+  z-index: 2
+  color: white
+  h1
+    font-weight: 300
+    font-size: 25px
+    transition: .3s
+  svg
+    path
+      transition: .3s
+  .blueSVG
+    fill: #48AF9C
+  .whiteSVG
+    fill: #ffffff
+  .blue
+    color: #48AF9C
+  .white
+    color: #fff
+  &:hover
+    h1
+      color: #1e4941
+    svg
+      path
+        fill: #1e4941
+
+
+@media screen and (max-width: 1000px)
+  .logoContainer
+    .blueSVG,.whiteSVG
+      fill: #ffffff
+    .blue
+      color: #fff
+    .white
+      color: #fff

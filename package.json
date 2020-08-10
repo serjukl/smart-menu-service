@@ -1,0 +1,19 @@
+{
+  "name": "smart-menu-service",
+  "version": "0.1.0",
+  "private": true,
+  "scripts": {
+    "dev": "next dev",
+    "build": "next build",
+    "start": "next start"
+  },
+  "dependencies": {
+    "formik": "^2.1.5",
+    "next": "9.5.1",
+    "radium": "^0.26.0",
+    "react": "16.13.1",
+    "react-dom": "16.13.1",
+    "react-reveal": "^1.2.2",
+    "sass": "^1.26.10"
+  }
+}
