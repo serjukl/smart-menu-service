@@ -3,7 +3,6 @@ import '../styles/resetStyles.css'
 import '../styles/Home.sass'
 import '../styles/Auth.sass'
 
-
 const MyApp = ({ Component, pageProps }) => {
     const [data,dataHandler] = useState(null)
     const [dbRefresh,dbRefreshHandler] = useState(0)

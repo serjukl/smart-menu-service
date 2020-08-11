@@ -7,7 +7,9 @@ import Input from "../components/UI/Input/Input";
 import AuthLinkIcons from "../components/AuthLinkIcons/AuthLinkIcons";
 import Button from "../components/UI/Button/Button";
 import Link from "next/link";
-import firebase from "firebase";
+import firebase from "firebase/app";
+import 'firebase/auth'
+import '../firebaseConfig'
 
 const Authentication = props => {
     const[nextPage, nextPageHandler] = useState(false)
