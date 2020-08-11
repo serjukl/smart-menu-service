@@ -12,6 +12,7 @@ const Input = props => {
                 required
                 id={props.name}
                 autoComplete={'off'}
+                onChange={(e) => props.changeHandler(e)}
             />
             {
                 props?.label

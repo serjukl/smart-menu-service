@@ -1,4 +1,4 @@
-import React,{useState, useRef} from 'react'
+import React,{useState, useRef, useEffect} from 'react'
 import Head from "next/head"
 import Fade  from 'react-reveal/Fade';
 import AuthLogo from "../components/AuthLogo/AuthLogo";
@@ -7,10 +7,11 @@ import Input from "../components/UI/Input/Input";
 import AuthLinkIcons from "../components/AuthLinkIcons/AuthLinkIcons";
 import Button from "../components/UI/Button/Button";
 import Link from "next/link";
-
+import firebase from "firebase";
 
 const Authentication = props => {
     const[nextPage, nextPageHandler] = useState(false)
+    const[userData, userDataHandler] = useState({})
     const formEl = useRef('formEl');
 
     const inputsReg = [
@@ -34,6 +35,13 @@ const Authentication = props => {
             class: 'defaultInput',
             name: 'email',
             label: 'Email'
+        },
+        {
+            type:'tel',
+            placeHolder: 'Phone number',
+            class: 'defaultInput',
+            name: 'tel',
+            label: 'Phone number'
         },
         {
             type:'password',
@@ -67,15 +75,43 @@ const Authentication = props => {
         }
     ]
 
-
-    const submitForm = e => {
+    useEffect(() => {
+    },[props.data])
+    const submitForm = (e,type) => {
         e.preventDefault()
+        if (type === 'reg') {
+            createNewUser()
+        }
     }
 
     const checkOtherAuthForm = (value) => {
         nextPageHandler(value)
         formEl.current.reset();
+        userDataHandler({})
     }
+
+    const getInputData = e => {
+        let key = e.target.name
+        userData[key] = e.target.value
+    }
+
+
+    const createNewUser = () => {
+        firebase.auth().createUserWithEmailAndPassword(userData.email, userData.password).catch(function(error) {
+            // Handle Errors here.
+            const errorCode = error.code;
+            const errorMessage = error.message;
+            // [START_EXCLUDE]
+            if (errorCode === 'auth/weak-password') {
+                alert('The password is too weak.');
+            } else {
+                alert(errorMessage);
+            }
+            console.log(error);
+            // [END_EXCLUDE]
+        });
+    }
+
 
     return (
         <div className={nextPage ? 'authContainer' : 'authContainer authRowReverse'}>
@@ -116,7 +152,7 @@ const Authentication = props => {
                                 ref={formEl}
                                 action=""
                                 className='formAuth'
-                                onSubmit={(e) => submitForm(e)}
+                                onSubmit={(e) => submitForm(e,'reg')}
                             >
                                 <legend>Create account</legend>
                                 <AuthLinkIcons />
@@ -131,6 +167,7 @@ const Authentication = props => {
                                                 class={input.class}
                                                 name={input.name}
                                                 label={input.label}
+                                                changeHandler={(e) => getInputData(e)}
                                             />
                                         )
                                     })
@@ -162,7 +199,7 @@ const Authentication = props => {
                                         )
                                     })
                                 }
-                                <Link href='/auth/forgot'>
+                                <Link href='/forgotPassword'>
                                     <a className='forgotPassLink'>
                                         Forgot password?
                                     </a>
